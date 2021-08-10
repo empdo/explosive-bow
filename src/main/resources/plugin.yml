@@ -1,0 +1,4 @@
+name: Plugin-Test1
+version: ${project.version}
+main: dev.essung.plugintest1.PluginTest1
+api-version: 1.16
