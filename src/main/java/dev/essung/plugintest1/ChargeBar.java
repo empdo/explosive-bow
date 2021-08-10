@@ -23,16 +23,15 @@ public class ChargeBar extends BukkitRunnable{
         for (Player p : Bukkit.getOnlinePlayers()) {
             String itemUUID = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer().get(NamespacedKey.minecraft("explosivestuff-uuid"), PersistentDataType.STRING);
             long timeNow = System.currentTimeMillis();
+            long timeThen = explosiveSword.cooldDown.get(itemUUID);
             if(explosiveSword.cooldDown.containsKey(itemUUID)) {
-                if (true){
-                    Integer progress = (int)(3000L/(timeNow - explosiveSword.cooldDown.get(itemUUID)));
+                if (timeThen > 3000){
+                    //int form 0 to 10 describing the progress from 0-100 %
+                    Integer progress = (int)((1.0/300L)*(timeNow - timeThen));
                     String progressBar = "[";
-                    for (int i = 0; i<(10-progress); i++){
-                        progressBar = progressBar + "#";
-                    };
-                    for (int i = 0; i<(progress > 10 ? 10 : progress); i++){
-                        progressBar = progressBar + "-";
-                    }
+
+                    progressBar = progressBar + new String(new char[progress]).replace("\0", "#");
+                    progressBar = progressBar + new String(new char[10 - progress]).replace("\0", "-");
                     progressBar = progressBar + "]";
 
                     p.spigot().sendMessage(ChatMessageType.ACTION_BAR,

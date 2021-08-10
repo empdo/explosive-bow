@@ -26,6 +26,7 @@ public final class PluginTest1 extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getPluginManager().registerEvents(new ExplosiveArrows(this),this);
         getServer().getPluginManager().registerEvents(new ExplosiveSword(this),this);
+        getServer().getPluginManager().registerEvents(new ExplosiveDash(this), this);
         
     }
 
